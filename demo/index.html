@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="era-sprout">
+<html lang="en" data-era="sprout">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -88,16 +88,16 @@
   .btn-primary { background: var(--primary); color: var(--primary-ink); }
   .btn-secondary { background: var(--secondary); color: var(--bg); }
   /* Sprout: solid bottom shadow so buttons look physically pressable (§4.1) */
-  .era-sprout .btn-primary   { box-shadow: 0 6px 0 var(--gold-text); }
-  .era-sprout .btn-secondary { box-shadow: 0 6px 0 #3D7FAB; color: #123A56; }
-  .era-sprout .btn:active { transform: translateY(4px); box-shadow: 0 2px 0 var(--gold-text); }
+  [data-era="sprout"] .btn-primary   { box-shadow: 0 6px 0 var(--gold-text); }
+  [data-era="sprout"] .btn-secondary { box-shadow: 0 6px 0 #3D7FAB; color: #123A56; }
+  [data-era="sprout"] .btn:active { transform: translateY(4px); box-shadow: 0 2px 0 var(--gold-text); }
 
   /* Money */
   .balance { font-size: 48px; }
-  .era-sprout .balance { font-size: 56px; }
+  [data-era="sprout"] .balance { font-size: 56px; }
   .delta-up { color: var(--signal-up); }
   .delta-dn { color: var(--signal-dn); }
-  .era-canopy .delta-up, .era-sapling .delta-up { color: var(--primary); }
+  [data-era="canopy"] .delta-up, [data-era="sapling"] .delta-up { color: var(--primary); }
 
   /* Growth ring (§2.4) */
   .ring-row { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; }
@@ -109,19 +109,19 @@
   /* Leaf coin (§2.1, §4.6) */
   .coin-row { display: flex; gap: 16px; align-items: center; }
   .leaf-stage { display: none; }
-  .era-sprout  .leaf-stage.s1,
-  .era-sapling .leaf-stage.s2,
-  .era-grove   .leaf-stage.s3,
-  .era-canopy  .leaf-stage.s4,
-  .era-harvest .leaf-stage.s5 { display: block; }
+  [data-era="sprout"]  .leaf-stage.s1,
+  [data-era="sapling"] .leaf-stage.s2,
+  [data-era="grove"]   .leaf-stage.s3,
+  [data-era="canopy"]  .leaf-stage.s4,
+  [data-era="harvest"] .leaf-stage.s5 { display: block; }
 
   /* Signature moment panels: one per era, shown by root class */
   .sig { display: none; }
-  .era-sprout  .sig-sprout,
-  .era-sapling .sig-sapling,
-  .era-grove   .sig-grove,
-  .era-canopy  .sig-canopy,
-  .era-harvest .sig-harvest { display: block; }
+  [data-era="sprout"]  .sig-sprout,
+  [data-era="sapling"] .sig-sapling,
+  [data-era="grove"]   .sig-grove,
+  [data-era="canopy"]  .sig-canopy,
+  [data-era="harvest"] .sig-harvest { display: block; }
 
   /* Sapling: pitch-a-job card — dashed, unlike every other card (§4.2) */
   .pitch-card {
@@ -174,11 +174,11 @@
   </header>
 
   <div class="switcher" role="group" aria-label="Era">
-    <button data-era="era-sprout" aria-pressed="true">Sprout 3–5</button>
-    <button data-era="era-sapling" aria-pressed="false">Sapling 6–9</button>
-    <button data-era="era-grove" aria-pressed="false">Grove 10–13</button>
-    <button data-era="era-canopy" aria-pressed="false">Canopy 14–17</button>
-    <button data-era="era-harvest" aria-pressed="false">Harvest 18</button>
+    <button data-era="sprout" aria-pressed="true">Sprout 3–5</button>
+    <button data-era="sapling" aria-pressed="false">Sapling 6–9</button>
+    <button data-era="grove" aria-pressed="false">Grove 10–13</button>
+    <button data-era="canopy" aria-pressed="false">Canopy 14–17</button>
+    <button data-era="harvest" aria-pressed="false">Harvest 18</button>
   </div>
 
   <section class="card">
@@ -316,7 +316,7 @@
     btn.addEventListener("click", () => {
       document.querySelectorAll(".switcher button").forEach(b => b.setAttribute("aria-pressed", "false"));
       btn.setAttribute("aria-pressed", "true");
-      root.className = btn.dataset.era;
+      root.dataset.era = btn.dataset.era;
       renderSwatches();
     });
   });

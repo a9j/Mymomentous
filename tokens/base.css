@@ -2,16 +2,19 @@
  *
  * The Constants (Design System §2). These never change, any era.
  * Era files (sprout.css … harvest.css) override the semantic tokens
- * listed in the contract below. Era switch = swap one class on the root:
- *   <html class="era-sprout"> → <html class="era-grove">
+ * listed in the contract below. Era switch = swap one data attribute
+ * on the root element:
+ *   <html data-era="sprout"> → <html data-era="grove">
  *
  * SEMANTIC TOKEN CONTRACT — every era file defines ALL of these,
  * with identical names and era-specific values:
  *
  *   Color:  --bg --surface --raised --ink --muted --line
- *           --primary --primary-ink --secondary
+ *           --primary --primary-ink --secondary --secondary-ink
  *           --signal-up --signal-dn --gold --gold-text --credit
+ *           --edge-primary --edge-secondary (Sprout toy-block shadow shades)
  *   Shape:  --radius --border-w --ring-weight --icon-stroke --touch-min
+ *           --press-depth (Sprout pressable-button depth; 0 elsewhere)
  *   Type:   --font-display --weight-display --display-tracking
  *           --font-body --weight-body --weight-body-strong --text-min
  *   Motion: --spring-stiffness --spring-damping --reveal-stagger

@@ -3,7 +3,7 @@
  * dollars. Whitespace does the work. Motion exists only to explain.
  */
 
-.era-canopy {
+[data-era="canopy"] {
   /* Color (light default, dark available) */
   --bg:          #F4F2ED; /* warm paper, not sterile white */
   --surface:     #FFFFFF;
@@ -19,9 +19,13 @@
   --gold:        #E3B34C; /* fills only */
   --gold-text:   #8A6A1B; /* §8: gold text on light backgrounds */
   --credit:      #6A58D8; /* grove violet, darkened to pass on white */
+  --secondary-ink: #FFFFFF;
+  --edge-primary:   transparent;
+  --edge-secondary: transparent;
 
   /* Shape */
   --radius:       10px;
+  --press-depth:  0px;
   --border-w:     1px;
   --ring-weight:  5px;
   --icon-stroke:  1.5px;

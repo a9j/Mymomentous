@@ -3,7 +3,7 @@
  * Buttons look like river stones. Nothing has a sharp corner.
  */
 
-.era-sprout {
+[data-era="sprout"] {
   /* Color */
   --bg:          #FFF6E5; /* warm cream, like construction paper */
   --surface:     #FFFDF7;
@@ -19,10 +19,14 @@
   --gold:        #F2B33C; /* coin gold */
   --gold-text:   #8A6A1B; /* §8: never raw gold as text on light bg */
   --credit:      #8B7BFF; /* unused this era; defined for parity */
+  --secondary-ink: #123A56;
+  --edge-primary:   #CE9C22; /* darker shade of --primary for the toy-block bottom shadow */
+  --edge-secondary: #3D7FAB; /* darker shade of --secondary */
 
   /* Shape: chunky borders + solid bottom shadow = toy-block, pressable */
   --radius:       28px;
   --border-w:     5px;
+  --press-depth:  6px;
   --ring-weight:  8px;
   --icon-stroke:  2px;
   --touch-min:    64px;

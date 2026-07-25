@@ -1,0 +1,7 @@
+.mm-card {
+  background: var(--surface);
+  border: var(--border-w) solid var(--line);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+.mm-card-raised { background: var(--raised); }

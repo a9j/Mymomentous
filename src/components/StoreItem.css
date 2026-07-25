@@ -1,0 +1,33 @@
+.mm-store-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 8px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+}
+.mm-store-emoji { font-size: 28px; line-height: 1; }
+/* §5: zero emoji from Grove onward */
+[data-era="grove"] .mm-store-emoji,
+[data-era="canopy"] .mm-store-emoji,
+[data-era="harvest"] .mm-store-emoji { display: none; }
+
+.mm-store-name { flex: 1; font-weight: var(--weight-body-strong); }
+
+/* §4.2 Sapling only: items sit on drawn shelves — a 3px evergreen line
+ * with tiny bracket feet, so the House Store reads as a storefront */
+[data-era="sapling"] .mm-store-item {
+  position: relative;
+  border-bottom: 3px solid var(--primary);
+}
+[data-era="sapling"] .mm-store-item::before,
+[data-era="sapling"] .mm-store-item::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  width: 3px;
+  height: 8px;
+  background: var(--primary);
+}
+[data-era="sapling"] .mm-store-item::before { left: 4px; }
+[data-era="sapling"] .mm-store-item::after { right: 4px; }

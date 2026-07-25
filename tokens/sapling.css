@@ -3,7 +3,7 @@
  * The world is a town. The type loses its baby weight.
  */
 
-.era-sapling {
+[data-era="sapling"] {
   /* Color */
   --bg:          #F5F0E1; /* parchment */
   --surface:     #FCFAF3;
@@ -19,9 +19,13 @@
   --gold:        #E3B34C; /* prices, rewards (fills only) */
   --gold-text:   #8A6A1B; /* §8: gold text on parchment */
   --credit:      #8B7BFF; /* unused this era; defined for parity */
+  --secondary-ink: #FCFAF3;
+  --edge-primary:   transparent; /* press shadow is Sprout-only */
+  --edge-secondary: transparent;
 
   /* Shape */
   --radius:       20px;
+  --press-depth:  0px;
   --border-w:     2px;
   --ring-weight:  5px;
   --icon-stroke:  2px;

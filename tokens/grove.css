@@ -4,7 +4,7 @@
  * tone, not shadow. Numbers tick, they do not fade.
  */
 
-.era-grove {
+[data-era="grove"] {
   /* Color (dark, default for this era) */
   --bg:          #10151C; /* midnight soil */
   --surface:     #161D27;
@@ -20,9 +20,13 @@
   --gold:        #F2B33C;
   --gold-text:   #F2B33C; /* raw gold passes on dark backgrounds */
   --credit:      #8B7BFF; /* violet owns everything credit and loans */
+  --secondary-ink: #10151C;
+  --edge-primary:   transparent;
+  --edge-secondary: transparent;
 
   /* Shape */
   --radius:       14px;
+  --press-depth:  0px;
   --border-w:     1px;
   --ring-weight:  5px;
   --icon-stroke:  1.5px;

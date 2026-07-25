@@ -1,0 +1,23 @@
+/* App-level base. Everything reads tokens; era switch restyles for free. */
+* { box-sizing: border-box; margin: 0; }
+
+html, body, #root { min-height: 100%; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-weight: var(--weight-body);
+  font-size: var(--text-min);
+  line-height: 1.5;
+  transition: background 0.4s, color 0.4s;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, .mm-display {
+  font-family: var(--font-display);
+  font-weight: var(--weight-display);
+  letter-spacing: var(--display-tracking);
+}
+
+button { font: inherit; }

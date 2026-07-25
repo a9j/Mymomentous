@@ -4,7 +4,7 @@
  * exactly once in the product's life: here. The diploma face.
  */
 
-.era-harvest {
+[data-era="harvest"] {
   /* Color */
   --bg:          #0A0A0A;
   --surface:     #141414;
@@ -20,9 +20,13 @@
   --gold:        #C9A24B;
   --gold-text:   #C9A24B; /* passes on near-black */
   --credit:      #8B7BFF;
+  --secondary-ink: #0A0A0A;
+  --edge-primary:   transparent;
+  --edge-secondary: transparent;
 
   /* Shape */
   --radius:       8px;
+  --press-depth:  0px;
   --border-w:     1px;
   --ring-weight:  5px;
   --icon-stroke:  1.5px;

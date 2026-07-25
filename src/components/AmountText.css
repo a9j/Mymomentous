@@ -1,0 +1,16 @@
+.mm-amount {
+  font-family: var(--font-money);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+.mm-amount-sm { font-size: 15px; }
+.mm-amount-md { font-size: 20px; }
+.mm-amount-lg { font-size: 32px; }
+.mm-amount-xl { font-size: 48px; }
+[data-era="sprout"] .mm-amount-xl { font-size: 56px; }
+
+/* §8: color never carries meaning alone — arrows/signs always accompany it */
+.mm-amount-up { color: var(--signal-up); }
+.mm-amount-dn { color: var(--signal-dn); }
+.mm-amount-gold { color: var(--gold-text); }

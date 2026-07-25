@@ -4,7 +4,7 @@
 
 A kids' money app built on one metaphor — growth — that visually ages with the child across five eras, from a toy (Sprout, ages 3–5) to a ceremony (Harvest, age 18).
 
-This repository currently contains the design system foundation: the spec, the era token files, motion presets, and a living demo.
+Stack: React, TypeScript, Vite. This repository contains the design system (Phase 1) and the component library (Phase 2).
 
 ## Layout
 
@@ -21,23 +21,34 @@ tokens/
 src/
   motion.ts          Framer Motion spring presets per era + reduced-motion fallback
   fonts.ts           Per-era Google Fonts loading (never all at once)
+  era.tsx            EraProvider / useEra: sets data-era on the root, swaps fonts
+  components/        Button, Card, Sheet, NavBar, AmountText, LeafCoin,
+                     GrowthRing, AvatarRings, QuestCard, StoreItem,
+                     ScoreDial, Sparkline — all read only from tokens
+  dev/DevGallery.tsx Hidden dev screen: every component, all five eras
 demo/
-  index.html         Era-switching demo: same components, five skins
+  index.html         Static era-switching demo (no build needed)
 ```
 
 ## How era switching works
 
-Every era file defines the **same semantic token names** with different values (the contract is documented at the top of `tokens/base.css`). Switching eras is one class swap on the root element:
+Every era file defines the **same semantic token names** with different values (the contract is documented at the top of `tokens/base.css`). Switching eras is one attribute swap on the root element:
 
 ```html
-<html class="era-sprout">  →  <html class="era-grove">
+<html data-era="sprout">  →  <html data-era="grove">
 ```
 
-Components read only from tokens. If a component needs a color that is not a token, the design is wrong, not the token file.
+`EraProvider` owns that attribute and loads the era's fonts. Components read only from tokens. If a component needs a color that is not a token, the design is wrong, not the token file.
 
-## Try the demo
+## Run it
 
-Open `demo/index.html` in a browser (or serve the repo root with any static server) and click through the five eras. Fonts load from Google Fonts.
+```
+npm install
+npm run dev      # opens the hidden component gallery (or visit /#dev in any build)
+npm run build    # typecheck + production build
+```
+
+The static `demo/index.html` still works standalone in a browser with no build.
 
 ## The one-sentence test
 
