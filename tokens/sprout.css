@@ -1,0 +1,43 @@
+/* MyMomentous — SPROUT (ages 3–5): The Toy (§4.1)
+ * One object per screen, two actions max, zero navigation.
+ * Buttons look like river stones. Nothing has a sharp corner.
+ */
+
+.era-sprout {
+  /* Color */
+  --bg:          #FFF6E5; /* warm cream, like construction paper */
+  --surface:     #FFFDF7;
+  --raised:      #FFFDF7;
+  --ink:         #4A3B22; /* warm brown. Black is too harsh here */
+  --muted:       #7A6A48;
+  --line:        #E8DCC2;
+  --primary:     #FFC93C; /* "sun" — primary action, joy */
+  --primary-ink: #4A3B22;
+  --secondary:   #7DCBFF; /* "sky" — secondary action */
+  --signal-up:   #6FD08C; /* "sprout" — success, growth */
+  --signal-dn:   #D64545;
+  --gold:        #F2B33C; /* coin gold */
+  --gold-text:   #8A6A1B; /* §8: never raw gold as text on light bg */
+  --credit:      #8B7BFF; /* unused this era; defined for parity */
+
+  /* Shape: chunky borders + solid bottom shadow = toy-block, pressable */
+  --radius:       28px;
+  --border-w:     5px;
+  --ring-weight:  8px;
+  --icon-stroke:  2px;
+  --touch-min:    64px;
+
+  /* Type */
+  --font-display:      "Fredoka", var(--font-body);
+  --weight-display:    600;
+  --display-tracking:  0;
+  --font-body:         "Nunito Sans", system-ui, sans-serif;
+  --weight-body:       800;
+  --weight-body-strong: 800;
+  --text-min:          18px;
+
+  /* Motion: bouncy — overshoots, wobbles, delights */
+  --spring-stiffness: 220;
+  --spring-damping:   12;
+  --reveal-stagger:   80ms;
+}

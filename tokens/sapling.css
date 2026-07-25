@@ -1,0 +1,43 @@
+/* MyMomentous — SAPLING (ages 6–9): The Storybook Game (§4.2)
+ * Two-pocket money, goals, the family store, first jobs board.
+ * The world is a town. The type loses its baby weight.
+ */
+
+.era-sapling {
+  /* Color */
+  --bg:          #F5F0E1; /* parchment */
+  --surface:     #FCFAF3;
+  --raised:      #FCFAF3;
+  --ink:         #2E4636;
+  --muted:       #5F7060;
+  --line:        #DCD3BC;
+  --primary:     #1E5B3F; /* evergreen — headers, nav, primary action */
+  --primary-ink: #FCFAF3;
+  --secondary:   #E4657A; /* berry — goals and wishes */
+  --signal-up:   #46C48A;
+  --signal-dn:   #D64545;
+  --gold:        #E3B34C; /* prices, rewards (fills only) */
+  --gold-text:   #8A6A1B; /* §8: gold text on parchment */
+  --credit:      #8B7BFF; /* unused this era; defined for parity */
+
+  /* Shape */
+  --radius:       20px;
+  --border-w:     2px;
+  --ring-weight:  5px;
+  --icon-stroke:  2px;
+  --touch-min:    48px;
+
+  /* Type */
+  --font-display:      "Fredoka", var(--font-body);
+  --weight-display:    500;
+  --display-tracking:  0;
+  --font-body:         "Nunito Sans", system-ui, sans-serif;
+  --weight-body:       700;
+  --weight-body-strong: 800;
+  --text-min:          15px;
+
+  /* Motion: springy but composed */
+  --spring-stiffness: 260;
+  --spring-damping:   16;
+  --reveal-stagger:   70ms;
+}

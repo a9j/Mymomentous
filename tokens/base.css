@@ -1,0 +1,65 @@
+/* MyMomentous — base.css
+ *
+ * The Constants (Design System §2). These never change, any era.
+ * Era files (sprout.css … harvest.css) override the semantic tokens
+ * listed in the contract below. Era switch = swap one class on the root:
+ *   <html class="era-sprout"> → <html class="era-grove">
+ *
+ * SEMANTIC TOKEN CONTRACT — every era file defines ALL of these,
+ * with identical names and era-specific values:
+ *
+ *   Color:  --bg --surface --raised --ink --muted --line
+ *           --primary --primary-ink --secondary
+ *           --signal-up --signal-dn --gold --gold-text --credit
+ *   Shape:  --radius --border-w --ring-weight --icon-stroke --touch-min
+ *   Type:   --font-display --weight-display --display-tracking
+ *           --font-body --weight-body --weight-body-strong --text-min
+ *   Motion: --spring-stiffness --spring-damping --reveal-stagger
+ *           (canonical presets live in motion.ts; these mirror them
+ *            for CSS-only consumers)
+ *
+ * Components read only from tokens. If a component needs a color that
+ * is not a token, the design is wrong, not the token file. (§9)
+ */
+
+:root {
+  /* §2.3 Mint Green — one brand green, present in every era */
+  --mint-300: #9FE8C4;
+  --mint-500: #46C48A;
+  --mint-700: #1E5B3F;
+
+  /* §2.1 The Leaf Coin — warm gold radial gradient, mint leaf emboss */
+  --coin-highlight: #FFE9A8; /* radial highlight at 35% 30% */
+  --coin-body:      #F2B33C;
+  --coin-rim:       #DC9E2C; /* rim stroke at 8% of diameter */
+  --coin-emboss:    #B07A16; /* the leaf glyph */
+
+  /* §2.2 The Money Font — the voice of the ledger, never ages */
+  --font-money: "Spline Sans Mono", ui-monospace, "SF Mono", monospace;
+
+  /* §2.4 Growth Rings — ring gap is constant; weight is per era */
+  --ring-gap: 3px;
+}
+
+/* §2.2 All Mint amounts, prices, balances, interest, and scores */
+.money {
+  font-family: var(--font-money);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+/* §8 Reduced motion: fade-only fallback, no springs, no drops */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --spring-stiffness: 0;
+    --spring-damping: 0;
+    --reveal-stagger: 0ms;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.15s !important;
+    transition-property: opacity !important;
+  }
+}

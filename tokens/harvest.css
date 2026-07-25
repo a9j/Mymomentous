@@ -1,0 +1,44 @@
+/* MyMomentous — HARVEST (age 18): The Ceremony (§4.5)
+ * One flow, experienced once. The last scene of a film.
+ * Fraunces is the only serif in the entire system and it appears
+ * exactly once in the product's life: here. The diploma face.
+ */
+
+.era-harvest {
+  /* Color */
+  --bg:          #0A0A0A;
+  --surface:     #141414;
+  --raised:      #1B1B1B;
+  --ink:         #F4F2ED;
+  --muted:       #9A958A;
+  --line:        #2A2A2A;
+  --primary:     #C9A24B; /* harvest gold, earned */
+  --primary-ink: #0A0A0A;
+  --secondary:   #46C48A; /* the constant, one last time */
+  --signal-up:   #46C48A;
+  --signal-dn:   #FF6B6B;
+  --gold:        #C9A24B;
+  --gold-text:   #C9A24B; /* passes on near-black */
+  --credit:      #8B7BFF;
+
+  /* Shape */
+  --radius:       8px;
+  --border-w:     1px;
+  --ring-weight:  5px;
+  --icon-stroke:  1.5px;
+  --touch-min:    44px;
+
+  /* Type */
+  --font-display:      "Fraunces", Georgia, serif;
+  --weight-display:    500;
+  --display-tracking:  0;
+  --font-body:         "Inter", system-ui, sans-serif;
+  --weight-body:       400;
+  --weight-body-strong: 500;
+  --text-min:          16px;
+
+  /* Motion: cinematic — stats reveal like film credits, 350ms apart */
+  --spring-stiffness: 380;
+  --spring-damping:   30;
+  --reveal-stagger:   350ms;
+}
