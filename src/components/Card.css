@@ -3,5 +3,6 @@
   border: var(--border-w) solid var(--line);
   border-radius: var(--radius);
   padding: 20px;
+  box-shadow: var(--shadow-card);
 }
 .mm-card-raised { background: var(--raised); }

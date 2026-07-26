@@ -11,17 +11,18 @@
   --ink:         #4A3B22; /* warm brown. Black is too harsh here */
   --muted:       #7A6A48;
   --line:        #E8DCC2;
-  --primary:     #FFC93C; /* "sun" — primary action, joy */
+  --primary:     #F5BE4A; /* "sun" — honeyed, warm, not neon */
   --primary-ink: #4A3B22;
-  --secondary:   #7DCBFF; /* "sky" — secondary action */
+  --secondary:   #93C9E8; /* "sky" — softened toward paper pastels */
   --signal-up:   #6FD08C; /* "sprout" — success, growth */
   --signal-dn:   #D64545;
   --gold:        #F2B33C; /* coin gold */
   --gold-text:   #8A6A1B; /* §8: never raw gold as text on light bg */
   --credit:      #8B7BFF; /* unused this era; defined for parity */
-  --secondary-ink: #123A56;
-  --edge-primary:   #CE9C22; /* darker shade of --primary for the toy-block bottom shadow */
-  --edge-secondary: #3D7FAB; /* darker shade of --secondary */
+  --secondary-ink: #17435F;
+  --edge-primary:   #D19C2C; /* darker shade of --primary for the toy-block bottom shadow */
+  --edge-secondary: #5D93B5; /* darker shade of --secondary */
+  --shadow-card:    none;    /* Sprout depth comes from chunky borders */
 
   /* Shape: chunky borders + solid bottom shadow = toy-block, pressable */
   --radius:       28px;

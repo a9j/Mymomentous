@@ -22,6 +22,7 @@
   --secondary-ink: #FFFFFF;
   --edge-primary:   transparent;
   --edge-secondary: transparent;
+  --shadow-card:    0 8px 20px rgb(20 23 26 / 0.06);
 
   /* Shape */
   --radius:       10px;

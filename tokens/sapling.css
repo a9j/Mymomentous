@@ -10,18 +10,19 @@
   --raised:      #FCFAF3;
   --ink:         #2E4636;
   --muted:       #5F7060;
-  --line:        #DCD3BC;
+  --line:        #E9E0CB; /* softened: cards float on shadow, line is a whisper */
   --primary:     #1E5B3F; /* evergreen — headers, nav, primary action */
   --primary-ink: #FCFAF3;
-  --secondary:   #E4657A; /* berry — goals and wishes */
+  --secondary:   #D9767E; /* berry — muted toward dusty rose */
   --signal-up:   #46C48A;
   --signal-dn:   #D64545;
-  --gold:        #E3B34C; /* prices, rewards (fills only) */
+  --gold:        #E0A83E; /* mustard — prices, rewards (fills only) */
   --gold-text:   #8A6A1B; /* §8: gold text on parchment */
   --credit:      #8B7BFF; /* unused this era; defined for parity */
   --secondary-ink: #FCFAF3;
   --edge-primary:   transparent; /* press shadow is Sprout-only */
   --edge-secondary: transparent;
+  --shadow-card:    0 10px 24px rgb(62 54 38 / 0.08); /* paper cards float softly */
 
   /* Shape */
   --radius:       20px;

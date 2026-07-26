@@ -15,6 +15,8 @@
  *           --edge-primary --edge-secondary (Sprout toy-block shadow shades)
  *   Shape:  --radius --border-w --ring-weight --icon-stroke --touch-min
  *           --press-depth (Sprout pressable-button depth; 0 elsewhere)
+ *           --shadow-card (soft diffuse card shadow; none where cards
+ *           separate by border or tone instead)
  *   Type:   --font-display --weight-display --display-tracking
  *           --font-body --weight-body --weight-body-strong --text-min
  *   Motion: --spring-stiffness --spring-damping --reveal-stagger

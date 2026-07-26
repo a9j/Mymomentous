@@ -23,6 +23,7 @@
   --secondary-ink: #0A0A0A;
   --edge-primary:   transparent;
   --edge-secondary: transparent;
+  --shadow-card:    none; /* the ceremony is light on darkness, not shadows */
 
   /* Shape */
   --radius:       8px;

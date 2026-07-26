@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { EraProvider } from "./era";
+import type { Era } from "./motion";
+import { ERAS } from "./era";
 import { DevGallery } from "./dev/DevGallery";
+import { KidHome } from "./screens/KidHome";
 
-/* The app's screens arrive in later phases. The hidden dev gallery lives
- * at #dev (always available in dev builds so the era switch stays one
- * keystroke away). */
+/* The hidden dev gallery lives at #dev. ?era=<name> sets the starting
+ * era (handy for screenshots and design review). */
 function useHash() {
   const [hash, setHash] = useState(window.location.hash);
   useEffect(() => {
@@ -15,20 +17,16 @@ function useHash() {
   return hash;
 }
 
+function initialEra(): Era {
+  const q = new URLSearchParams(window.location.search).get("era");
+  return (ERAS as string[]).includes(q ?? "") ? (q as Era) : "sapling";
+}
+
 export default function App() {
   const hash = useHash();
-  const showGallery = hash === "#dev" || import.meta.env.DEV;
-
   return (
-    <EraProvider>
-      {showGallery ? (
-        <DevGallery />
-      ) : (
-        <div style={{ padding: 40, textAlign: "center" }}>
-          <h1>MyMomentous</h1>
-          <p>Money is grown, not given.</p>
-        </div>
-      )}
+    <EraProvider initial={initialEra()}>
+      {hash === "#dev" ? <DevGallery /> : <KidHome />}
     </EraProvider>
   );
 }
