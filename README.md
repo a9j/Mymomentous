@@ -28,7 +28,18 @@ src/
   dev/DevGallery.tsx Hidden dev screen: every component, all five eras
 demo/
   index.html         Static era-switching demo (no build needed)
+supabase/
+  migrations/        Core schema, RLS + balances view, money RPCs
+  seed.sql           The Anderson Economy (one parent, one kid)
+  tests/rls_smoke.sql  Two-household RLS test with simulated JWT personas
+scripts/
+  db-local-test.sh   Throwaway local Postgres: stub + migrations + seed + tests
+PRIVACY.md           Plain-language privacy page (COPPA posture, day one)
 ```
+
+## The data model's one rule
+
+**The ledger is append-only.** Balances are never stored as editable numbers — the `balances` view sums `transactions`, and a trigger makes updates/deletes on the ledger impossible even for privileged code. All money movement goes through Postgres RPCs (`pay_job`, `purchase_item`, `transfer`, `create_household`, `add_kid`); clients have no write path to `transactions` at all. Run `./scripts/db-local-test.sh` to prove it locally (requires Postgres 16 installed, no server running).
 
 ## How era switching works
 
