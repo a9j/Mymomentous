@@ -1,0 +1,51 @@
+/* MyMomentous — CANOPY (ages 14–17): Clean Fintech (§4.4)
+ * Taxes, insurance, compound interest, shadow portfolio, first real
+ * dollars. Whitespace does the work. Motion exists only to explain.
+ */
+
+[data-era="canopy"] {
+  /* Color (light default, dark available) */
+  --bg:          #F4F2ED; /* warm paper, not sterile white */
+  --surface:     #FFFFFF;
+  --raised:      #FFFFFF;
+  --ink:         #14171A;
+  --muted:       #6E7278;
+  --line:        #E3E0D8;
+  --primary:     #2FA876; /* brand green, desaturated to adult strength */
+  --primary-ink: #FFFFFF;
+  --secondary:   #14171A;
+  --signal-up:   #2FA876;
+  --signal-dn:   #D64545;
+  --gold:        #E3B34C; /* fills only */
+  --gold-text:   #8A6A1B; /* §8: gold text on light backgrounds */
+  --credit:      #6A58D8; /* grove violet, darkened to pass on white */
+  --secondary-ink: #FFFFFF;
+  --edge-primary:   transparent;
+  --edge-secondary: transparent;
+  --shadow-card:    0 8px 20px rgb(20 23 26 / 0.06);
+  --primary-soft:   #E7F3EC;
+  --secondary-soft: #EDEDF0;
+  --gold-soft:      #F4EBD7;
+
+  /* Shape */
+  --radius:       10px;
+  --press-depth:  0px;
+  --border-w:     1px;
+  --ring-weight:  5px;
+  --icon-stroke:  1.5px;
+  --touch-min:    44px;
+
+  /* Type */
+  --font-display:      "Sora", var(--font-body);
+  --weight-display:    600;
+  --display-tracking:  -0.25px;
+  --font-body:         "Inter", system-ui, sans-serif;
+  --weight-body:       400;
+  --weight-body-strong: 500;
+  --text-min:          15px;
+
+  /* Motion: purposeful — a stream splitting, a curve responding to a scrub */
+  --spring-stiffness: 380;
+  --spring-damping:   28;
+  --reveal-stagger:   40ms;
+}

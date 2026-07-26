@@ -1,0 +1,51 @@
+/* MyMomentous — SAPLING (ages 6–9): The Storybook Game (§4.2)
+ * Two-pocket money, goals, the family store, first jobs board.
+ * The world is a town. The type loses its baby weight.
+ */
+
+[data-era="sapling"] {
+  /* Color */
+  --bg:          #F5F0E1; /* parchment */
+  --surface:     #FCFAF3;
+  --raised:      #FCFAF3;
+  --ink:         #2E4636;
+  --muted:       #5F7060;
+  --line:        #E9E0CB; /* softened: cards float on shadow, line is a whisper */
+  --primary:     #1E5B3F; /* evergreen — headers, nav, primary action */
+  --primary-ink: #FCFAF3;
+  --secondary:   #D9767E; /* berry — muted toward dusty rose */
+  --signal-up:   #46C48A;
+  --signal-dn:   #D64545;
+  --gold:        #E0A83E; /* mustard — prices, rewards (fills only) */
+  --gold-text:   #8A6A1B; /* §8: gold text on parchment */
+  --credit:      #8B7BFF; /* unused this era; defined for parity */
+  --secondary-ink: #FCFAF3;
+  --edge-primary:   transparent; /* press shadow is Sprout-only */
+  --edge-secondary: transparent;
+  --shadow-card:    0 10px 24px rgb(62 54 38 / 0.08); /* paper cards float softly */
+  --primary-soft:   #DFF0E4; /* mint milk */
+  --secondary-soft: #F9E6E6; /* berry milk */
+  --gold-soft:      #F7ECCF;
+
+  /* Shape */
+  --radius:       20px;
+  --press-depth:  0px;
+  --border-w:     2px;
+  --ring-weight:  5px;
+  --icon-stroke:  2px;
+  --touch-min:    48px;
+
+  /* Type */
+  --font-display:      "Fredoka", var(--font-body);
+  --weight-display:    500;
+  --display-tracking:  0;
+  --font-body:         "Nunito Sans", system-ui, sans-serif;
+  --weight-body:       700;
+  --weight-body-strong: 800;
+  --text-min:          15px;
+
+  /* Motion: springy but composed */
+  --spring-stiffness: 260;
+  --spring-damping:   16;
+  --reveal-stagger:   70ms;
+}

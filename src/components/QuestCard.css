@@ -1,0 +1,24 @@
+.mm-quest {
+  background: var(--surface);
+  border: var(--border-w) solid var(--line);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+}
+/* Chore: left color spine coded by job type (§4.2) */
+.mm-quest-chore { border-left: 4px solid var(--primary); }
+
+/* Pitch-a-job: dashed and unlike every other card in the app — it is the
+ * most important behavior we teach (§4.2 signature moment) */
+.mm-quest-pitch { border: var(--border-w) dashed var(--secondary); }
+
+.mm-quest-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.mm-quest-title { font-weight: var(--weight-body-strong); }
+.mm-quest-meta { color: var(--muted); font-size: 0.85em; margin-top: 2px; }
+.mm-quest-bulb { color: var(--secondary); flex-shrink: 0; }
+.mm-quest-bulb svg { stroke-width: var(--icon-stroke); }
+.mm-quest-actions { display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; }

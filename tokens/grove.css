@@ -1,0 +1,52 @@
+/* MyMomentous — GROVE (ages 10–13): The Game Terminal (§4.3)
+ * Bills, credit, fictional funds. Dark by default — dark mode is a
+ * rite of passage here, not a settings toggle. Cards separate by
+ * tone, not shadow. Numbers tick, they do not fade.
+ */
+
+[data-era="grove"] {
+  /* Color (dark, default for this era) */
+  --bg:          #10151C; /* midnight soil */
+  --surface:     #161D27;
+  --raised:      #1C2531;
+  --ink:         #E8ECF4;
+  --muted:       #6B7484;
+  --line:        #232E3E;
+  --primary:     #52E8A4; /* mint goes neon in the dark */
+  --primary-ink: #10151C;
+  --secondary:   #8B7BFF;
+  --signal-up:   #52E8A4;
+  --signal-dn:   #FF6B6B; /* losses must look like losses */
+  --gold:        #F2B33C;
+  --gold-text:   #F2B33C; /* raw gold passes on dark backgrounds */
+  --credit:      #8B7BFF; /* violet owns everything credit and loans */
+  --secondary-ink: #10151C;
+  --edge-primary:   transparent;
+  --edge-secondary: transparent;
+  --shadow-card:    none; /* cards separate by tone, not shadow (§4.3) */
+  --primary-soft:   #17342A; /* neon mint at whisper strength */
+  --secondary-soft: #221F38;
+  --gold-soft:      #2A2416;
+
+  /* Shape */
+  --radius:       14px;
+  --press-depth:  0px;
+  --border-w:     1px;
+  --ring-weight:  5px;
+  --icon-stroke:  1.5px;
+  --touch-min:    44px;
+
+  /* Type */
+  --font-display:      "Sora", var(--font-body);
+  --weight-display:    600;
+  --display-tracking:  -0.5px;
+  --font-body:         "Inter", system-ui, sans-serif;
+  --weight-body:       500;
+  --weight-body-strong: 600;
+  --text-min:          15px;
+
+  /* Motion: crisp, quick, no wobble. Red events: one 200ms shake, never more. */
+  --spring-stiffness: 320;
+  --spring-damping:   22;
+  --reveal-stagger:   50ms;
+}

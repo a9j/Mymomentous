@@ -1,0 +1,28 @@
+.mm-sheet-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgb(0 0 0 / 0.4);
+  animation: mm-sheet-fade 0.25s ease;
+  z-index: 40;
+}
+.mm-sheet {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--surface);
+  border-top: var(--border-w) solid var(--line);
+  border-radius: var(--radius) var(--radius) 0 0;
+  padding: 12px 20px calc(20px + env(safe-area-inset-bottom));
+  animation: mm-sheet-up 0.3s ease;
+  z-index: 41;
+}
+.mm-sheet-handle {
+  width: 40px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--line);
+  margin: 0 auto 12px;
+}
+@keyframes mm-sheet-up { from { transform: translateY(100%); } }
+@keyframes mm-sheet-fade { from { opacity: 0; } }

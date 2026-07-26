@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en" data-era="sprout">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MyMomentous — Design System Demo</title>
+
+<!-- Demo convenience: all era fonts at once. Production loads per era via src/fonts.ts (§9). -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Nunito+Sans:wght@700;800&family=Sora:wght@600&family=Inter:wght@400;500;600&family=Fraunces:opsz,wght@9..144,500&family=Spline+Sans+Mono:wght@500;600&display=swap">
+
+<link rel="stylesheet" href="../tokens/base.css">
+<link rel="stylesheet" href="../tokens/sprout.css">
+<link rel="stylesheet" href="../tokens/sapling.css">
+<link rel="stylesheet" href="../tokens/grove.css">
+<link rel="stylesheet" href="../tokens/canopy.css">
+<link rel="stylesheet" href="../tokens/harvest.css">
+
+<style>
+  /* Demo chrome. Every component below reads only from tokens (§9). */
+  * { box-sizing: border-box; margin: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-weight: var(--weight-body);
+    font-size: var(--text-min);
+    line-height: 1.5;
+    padding: 32px 20px 80px;
+    transition: background 0.4s, color 0.4s;
+  }
+  main { max-width: 720px; margin: 0 auto; display: grid; gap: 28px; }
+
+  h1, h2, .display {
+    font-family: var(--font-display);
+    font-weight: var(--weight-display);
+    letter-spacing: var(--display-tracking);
+  }
+  h1 { font-size: 34px; }
+  h2 { font-size: 20px; margin-bottom: 12px; }
+  .sub { color: var(--muted); }
+
+  /* Era switcher */
+  .switcher { display: flex; flex-wrap: wrap; gap: 8px; }
+  .switcher button {
+    min-height: var(--touch-min);
+    padding: 8px 18px;
+    border-radius: var(--radius);
+    border: var(--border-w) solid var(--line);
+    background: var(--surface);
+    color: var(--ink);
+    font: inherit;
+    font-weight: var(--weight-body-strong);
+    cursor: pointer;
+  }
+  .switcher button[aria-pressed="true"] {
+    background: var(--primary);
+    color: var(--primary-ink);
+    border-color: var(--primary);
+  }
+
+  .card {
+    background: var(--surface);
+    border: var(--border-w) solid var(--line);
+    border-radius: var(--radius);
+    padding: 20px;
+  }
+
+  /* Swatches */
+  .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 10px; }
+  .swatch { border-radius: calc(var(--radius) / 2); border: 1px solid var(--line); overflow: hidden; }
+  .swatch .chip { height: 44px; }
+  .swatch .label { padding: 6px 8px; font-size: 11px; font-family: var(--font-money); background: var(--surface); }
+  .swatch .label b { display: block; font-family: var(--font-body); font-weight: var(--weight-body-strong); }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-height: var(--touch-min);
+    padding: 10px 24px;
+    border-radius: var(--radius);
+    border: none;
+    font-family: var(--font-body);
+    font-weight: var(--weight-body-strong);
+    font-size: var(--text-min);
+    cursor: pointer;
+  }
+  .btn-primary { background: var(--primary); color: var(--primary-ink); }
+  .btn-secondary { background: var(--secondary); color: var(--bg); }
+  /* Sprout: solid bottom shadow so buttons look physically pressable (§4.1) */
+  [data-era="sprout"] .btn-primary   { box-shadow: 0 6px 0 var(--gold-text); }
+  [data-era="sprout"] .btn-secondary { box-shadow: 0 6px 0 #3D7FAB; color: #123A56; }
+  [data-era="sprout"] .btn:active { transform: translateY(4px); box-shadow: 0 2px 0 var(--gold-text); }
+
+  /* Money */
+  .balance { font-size: 48px; }
+  [data-era="sprout"] .balance { font-size: 56px; }
+  .delta-up { color: var(--signal-up); }
+  .delta-dn { color: var(--signal-dn); }
+  [data-era="canopy"] .delta-up, [data-era="sapling"] .delta-up { color: var(--primary); }
+
+  /* Growth ring (§2.4) */
+  .ring-row { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; }
+  .ring { transform: rotate(-90deg); }
+  .ring .track { stroke: var(--line); }
+  .ring .fill  { stroke: var(--signal-up); transition: stroke-dashoffset 0.8s ease; }
+  .ring-label { text-align: center; font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+  /* Leaf coin (§2.1, §4.6) */
+  .coin-row { display: flex; gap: 16px; align-items: center; }
+  .leaf-stage { display: none; }
+  [data-era="sprout"]  .leaf-stage.s1,
+  [data-era="sapling"] .leaf-stage.s2,
+  [data-era="grove"]   .leaf-stage.s3,
+  [data-era="canopy"]  .leaf-stage.s4,
+  [data-era="harvest"] .leaf-stage.s5 { display: block; }
+
+  /* Signature moment panels: one per era, shown by root class */
+  .sig { display: none; }
+  [data-era="sprout"]  .sig-sprout,
+  [data-era="sapling"] .sig-sapling,
+  [data-era="grove"]   .sig-grove,
+  [data-era="canopy"]  .sig-canopy,
+  [data-era="harvest"] .sig-harvest { display: block; }
+
+  /* Sapling: pitch-a-job card — dashed, unlike every other card (§4.2) */
+  .pitch-card {
+    border: var(--border-w) dashed var(--secondary);
+    border-radius: var(--radius);
+    padding: 20px;
+    background: var(--surface);
+  }
+  .quest-card {
+    border-left: 4px solid var(--primary);
+    background: var(--surface);
+    border-radius: calc(var(--radius) / 2);
+    padding: 12px 16px;
+    margin-top: 12px;
+    border-top: var(--border-w) solid var(--line);
+    border-right: var(--border-w) solid var(--line);
+    border-bottom: var(--border-w) solid var(--line);
+  }
+
+  /* Grove: term sheet (§4.3) */
+  .term-sheet { font-family: var(--font-money); font-size: 14px; }
+  .term-sheet .row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--line); }
+  .term-sheet .row span:first-child { color: var(--muted); font-family: var(--font-body); }
+  .credit-tag { color: var(--credit); font-weight: var(--weight-body-strong); }
+  .sparkline .line { stroke: var(--signal-dn); fill: none; stroke-width: 2; }
+  .sparkline .area { fill: var(--signal-dn); opacity: 0.12; }
+
+  /* Canopy: tax split + projection (§4.4) */
+  .tax-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--line); }
+  .curve .line { stroke: var(--primary); fill: none; stroke-width: 2; }
+  .curve .area { fill: var(--primary); opacity: 0.10; }
+
+  /* Harvest: film credits (§4.5) */
+  .sig-harvest .credit-line { opacity: 0; animation: reveal 0.6s ease forwards; }
+  .sig-harvest .credit-line:nth-child(2) { animation-delay: calc(var(--reveal-stagger) * 1); }
+  .sig-harvest .credit-line:nth-child(3) { animation-delay: calc(var(--reveal-stagger) * 2); }
+  .sig-harvest .credit-line:nth-child(4) { animation-delay: calc(var(--reveal-stagger) * 3); }
+  .sig-harvest .credit-line:nth-child(5) { animation-delay: calc(var(--reveal-stagger) * 4); }
+  @keyframes reveal { to { opacity: 1; } }
+  .harvest-title { color: var(--primary); font-size: 32px; }
+
+  footer { text-align: center; color: var(--muted); font-size: 13px; margin-top: 12px; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>MyMomentous</h1>
+    <p class="sub">Money is grown, not given. Same components, five eras — switch below to swap one class on the root.</p>
+  </header>
+
+  <div class="switcher" role="group" aria-label="Era">
+    <button data-era="sprout" aria-pressed="true">Sprout 3–5</button>
+    <button data-era="sapling" aria-pressed="false">Sapling 6–9</button>
+    <button data-era="grove" aria-pressed="false">Grove 10–13</button>
+    <button data-era="canopy" aria-pressed="false">Canopy 14–17</button>
+    <button data-era="harvest" aria-pressed="false">Harvest 18</button>
+  </div>
+
+  <section class="card">
+    <h2>Balance</h2>
+    <div class="coin-row">
+      <!-- §2.1 The Leaf Coin, §4.6 the leaf matures with the era -->
+      <svg width="64" height="64" viewBox="0 0 64 64" aria-label="Leaf coin">
+        <defs>
+          <radialGradient id="coinG" cx="35%" cy="30%" r="75%">
+            <stop offset="0%" stop-color="#FFE9A8"/>
+            <stop offset="70%" stop-color="#F2B33C"/>
+          </radialGradient>
+        </defs>
+        <circle cx="32" cy="32" r="29.5" fill="url(#coinG)" stroke="#DC9E2C" stroke-width="5"/>
+        <g fill="none" stroke="#B07A16" stroke-width="3" stroke-linecap="round">
+          <g class="leaf-stage s1"><path d="M32 44 V30 M32 34 C26 32 24 26 25 22 C30 23 32 27 32 32 M32 34 C38 32 40 26 39 22 C34 23 32 27 32 32"/></g>
+          <g class="leaf-stage s2"><path d="M32 46 V22 M32 38 C26 37 23 33 24 29 M32 38 C38 37 41 33 40 29 M32 30 C27 29 25 25 26 21 M32 30 C37 29 39 25 38 21"/></g>
+          <g class="leaf-stage s3"><path d="M32 47 V19 M32 41 C25 40 22 35 23 31 M32 41 C39 40 42 35 41 31 M32 33 C26 32 24 27 25 24 M32 33 C38 32 40 27 39 24 M32 25 C29 23 28 20 29 17 M32 25 C35 23 36 20 35 17"/></g>
+          <g class="leaf-stage s4"><path d="M32 47 V18 M32 40 C25 40 21 36 21 31 M32 40 L26 33 M32 32 C39 32 43 28 43 23 M32 32 L38 25 M32 24 C28 23 26 20 27 16"/></g>
+          <g class="leaf-stage s5"><path d="M32 47 V20 M32 40 C25 40 21 36 21 31 M32 32 C39 32 43 28 43 23"/><circle cx="32" cy="17" r="4.5" fill="#FFE9A8" stroke-width="2"/></g>
+        </g>
+      </svg>
+      <div>
+        <div class="money balance">128</div>
+        <div class="money delta-up">▲ +5 <span class="sub" style="font-family:var(--font-body)">Mints today</span></div>
+      </div>
+    </div>
+    <p style="margin-top:16px; display:flex; gap:12px; flex-wrap:wrap">
+      <button class="btn btn-primary">Add to jar</button>
+      <button class="btn btn-secondary">Spend</button>
+    </p>
+  </section>
+
+  <section class="card">
+    <h2>Growth rings</h2>
+    <div class="ring-row">
+      <div>
+        <svg class="ring" width="96" height="96" viewBox="0 0 96 96">
+          <circle class="track" cx="48" cy="48" r="42" fill="none" stroke-width="5"/>
+          <circle class="fill" id="goalRing" cx="48" cy="48" r="42" fill="none" stroke-width="5"
+                  stroke-linecap="round" stroke-dasharray="263.9" stroke-dashoffset="92.4"/>
+        </svg>
+        <div class="ring-label">Goal · 65%</div>
+      </div>
+      <div>
+        <svg class="ring" width="96" height="96" viewBox="0 0 96 96">
+          <circle class="track" cx="48" cy="48" r="26" fill="none" stroke-width="5"/>
+          <circle class="fill" cx="48" cy="48" r="26" fill="none" stroke-width="5"/>
+          <circle class="fill" cx="48" cy="48" r="34" fill="none" stroke-width="5" opacity="0.7"/>
+          <circle class="fill" cx="48" cy="48" r="42" fill="none" stroke-width="5" opacity="0.45"/>
+        </svg>
+        <div class="ring-label">Tenure · 3 years</div>
+      </div>
+      <p class="sub" style="max-width:260px">Progress is never a bar. It is a ring, like a tree ring. Ring weight follows <code class="money" style="font-size:12px">--ring-weight</code>.</p>
+    </div>
+  </section>
+
+  <!-- Signature moments: one per era -->
+  <section class="card sig sig-sprout">
+    <h2>The jar</h2>
+    <p class="display" style="font-size:34px">You earned 5 Mints!</p>
+    <p class="sub">One object per screen. Two actions max. The sprout on the jar lid gains a leaf at savings milestones.</p>
+  </section>
+
+  <section class="sig sig-sapling">
+    <div class="pitch-card">
+      <h2>💡 Pitch a job</h2>
+      <p>Name your price. What would you do for the house, and what is it worth?</p>
+      <p style="margin-top:12px"><button class="btn btn-primary">Make my pitch</button></p>
+    </div>
+    <div class="quest-card">
+      <b>Water the garden</b> · <span class="money gold" style="color:var(--gold-text)">8 Mints</span>
+      <div class="sub">Chore · posted by Mom</div>
+    </div>
+  </section>
+
+  <section class="card sig sig-grove">
+    <h2>Rocket Fund</h2>
+    <svg class="sparkline" width="100%" height="48" viewBox="0 0 300 48" preserveAspectRatio="none">
+      <path class="area" d="M0 18 L30 14 L60 20 L90 12 L120 16 L150 10 L180 22 L210 19 L240 30 L270 26 L300 34 L300 48 L0 48 Z"/>
+      <path class="line" d="M0 18 L30 14 L60 20 L90 12 L120 16 L150 10 L180 22 L210 19 L240 30 L270 26 L300 34"/>
+    </svg>
+    <p class="money delta-dn">▼ −8%</p>
+    <p class="sub">Rocket Fund fell 8%. That is what high risk means.</p>
+    <div class="term-sheet" style="margin-top:16px">
+      <div class="row"><span>Loan offer</span><span class="credit-tag">Bike upgrade</span></div>
+      <div class="row"><span>Principal</span><span class="money">40</span></div>
+      <div class="row"><span>Rate</span><span class="money">5% / week</span></div>
+      <div class="row"><span>Term</span><span class="money">6 weeks</span></div>
+    </div>
+  </section>
+
+  <section class="card sig sig-canopy">
+    <h2>Paycheck</h2>
+    <div class="tax-row"><span>Gross pay</span><span class="money">100</span></div>
+    <div class="tax-row"><span>Family tax</span><span class="money">10</span></div>
+    <div class="tax-row"><span><b>Net</b></span><span class="money"><b>90</b></span></div>
+    <h2 style="margin-top:20px">Compound projection</h2>
+    <svg class="curve" width="100%" height="64" viewBox="0 0 300 64" preserveAspectRatio="none">
+      <path class="area" d="M0 60 C100 58 180 50 240 32 C265 24 285 14 300 4 L300 64 L0 64 Z"/>
+      <path class="line" d="M0 60 C100 58 180 50 240 32 C265 24 285 14 300 4"/>
+    </svg>
+    <p class="sub">At age 45: <span class="money" style="color:var(--primary)">12,408</span></p>
+  </section>
+
+  <section class="card sig sig-harvest" style="text-align:center; padding:40px 20px">
+    <p class="credit-line sub">Eleven years in the economy.</p>
+    <p class="credit-line money" style="font-size:40px">4,216 Mints grown</p>
+    <p class="credit-line sub">312 jobs. 1 loan, paid in full.</p>
+    <p class="credit-line display harvest-title">You are ready for the real one.</p>
+    <p class="credit-line" style="margin-top:16px"><button class="btn btn-primary">Open the real account</button></p>
+  </section>
+
+  <section class="card">
+    <h2>Palette</h2>
+    <div class="swatches" id="swatches"></div>
+  </section>
+
+  <footer>Era switch = one class on the root. Components read only from tokens. §10: does it still say "the money app that grows up with your kid"?</footer>
+</main>
+
+<script>
+  const TOKENS = ["--bg","--surface","--raised","--ink","--muted","--line","--primary","--secondary","--signal-up","--signal-dn","--gold","--gold-text","--credit"];
+  const root = document.documentElement;
+
+  function renderSwatches() {
+    const cs = getComputedStyle(root);
+    document.getElementById("swatches").innerHTML = TOKENS.map(t => {
+      const v = cs.getPropertyValue(t).trim();
+      return `<div class="swatch"><div class="chip" style="background:${v}"></div><div class="label"><b>${t.slice(2)}</b>${v}</div></div>`;
+    }).join("");
+  }
+
+  document.querySelectorAll(".switcher button").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".switcher button").forEach(b => b.setAttribute("aria-pressed", "false"));
+      btn.setAttribute("aria-pressed", "true");
+      root.dataset.era = btn.dataset.era;
+      renderSwatches();
+    });
+  });
+
+  renderSwatches();
+</script>
+</body>
+</html>

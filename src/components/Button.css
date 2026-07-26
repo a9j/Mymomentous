@@ -1,0 +1,44 @@
+.mm-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: var(--touch-min);
+  min-width: var(--touch-min);
+  padding: 10px 24px;
+  border: none;
+  border-radius: var(--radius);
+  font-family: var(--font-body);
+  font-weight: var(--weight-body-strong);
+  font-size: var(--text-min);
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.1s, opacity 0.2s;
+}
+.mm-btn:disabled { opacity: 0.5; cursor: default; }
+
+.mm-btn-primary {
+  background: var(--primary);
+  color: var(--primary-ink);
+  box-shadow: 0 var(--press-depth) 0 var(--edge-primary);
+}
+.mm-btn-secondary {
+  background: var(--secondary);
+  color: var(--secondary-ink);
+  box-shadow: 0 var(--press-depth) 0 var(--edge-secondary);
+}
+.mm-btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  border: var(--border-w) solid var(--line);
+}
+
+/* Pressable: the button physically sinks by its press depth (Sprout only —
+ * everywhere else --press-depth is 0 and this is a no-op) */
+.mm-btn-primary:active:not(:disabled),
+.mm-btn-secondary:active:not(:disabled) {
+  transform: translateY(calc(var(--press-depth) * 0.66));
+  box-shadow: 0 calc(var(--press-depth) * 0.33) 0 var(--edge-primary);
+}
+.mm-btn-secondary:active:not(:disabled) {
+  box-shadow: 0 calc(var(--press-depth) * 0.33) 0 var(--edge-secondary);
+}
