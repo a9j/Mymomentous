@@ -46,18 +46,27 @@
   font-weight: var(--weight-body-strong);
 }
 
-/* Big friendly stat chips */
+/* Big friendly stat chips — each its own pastel block */
 .mm-home-stats { display: flex; gap: 12px; }
 .mm-home-stat {
   flex: 1;
-  background: var(--surface);
-  border: var(--border-w) solid var(--line);
-  border-radius: var(--radius);
+  border: none;
+  border-radius: calc(var(--radius) * 1.15);
   box-shadow: var(--shadow-card);
-  padding: 12px 14px;
+  padding: 14px;
   text-align: center;
 }
-.mm-home-stat small { display: block; color: var(--muted); font-size: 12px; }
+.mm-home-stat:nth-child(1) { background: var(--primary-soft); }
+.mm-home-stat:nth-child(2) { background: var(--gold-soft); }
+.mm-home-stat:nth-child(3) { background: var(--secondary-soft); }
+.mm-home-stat small { display: block; color: var(--ink); opacity: 0.65; font-size: 12px; font-weight: var(--weight-body-strong); }
+
+/* Goal: a color-blocked moment, not another white card */
+.mm-home-goal-card {
+  background: var(--secondary-soft);
+  border-color: transparent;
+}
+.mm-home-goal-card .mm-ring-track { stroke: rgb(255 255 255 / 0.65); }
 
 .mm-home h2 { font-size: 18px; margin-bottom: 10px; }
 .mm-home-goal { display: flex; align-items: center; gap: 18px; }

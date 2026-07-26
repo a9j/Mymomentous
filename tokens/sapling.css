@@ -23,6 +23,9 @@
   --edge-primary:   transparent; /* press shadow is Sprout-only */
   --edge-secondary: transparent;
   --shadow-card:    0 10px 24px rgb(62 54 38 / 0.08); /* paper cards float softly */
+  --primary-soft:   #DFF0E4; /* mint milk */
+  --secondary-soft: #F9E6E6; /* berry milk */
+  --gold-soft:      #F7ECCF;
 
   /* Shape */
   --radius:       20px;

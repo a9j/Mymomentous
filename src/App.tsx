@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { EraProvider, ERAS } from "./era";
 import type { Era } from "./motion";
 import { DevGallery } from "./dev/DevGallery";
+import { JarScreen } from "./screens/JarScreen";
 import { KidHome } from "./screens/KidHome";
 import { Onboarding } from "./screens/Onboarding";
 import { ParentHome } from "./screens/ParentHome";
@@ -33,6 +34,8 @@ export default function App() {
     <EraProvider initial={initialEra()}>
       {hash === "#dev" ? (
         <DevGallery />
+      ) : hash === "#jar" ? (
+        <JarScreen />
       ) : hash === "#onboarding" ? (
         <Onboarding onDone={() => { window.location.hash = "#parent"; }} />
       ) : hash === "#parent" ? (

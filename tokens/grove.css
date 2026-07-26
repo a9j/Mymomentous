@@ -24,6 +24,9 @@
   --edge-primary:   transparent;
   --edge-secondary: transparent;
   --shadow-card:    none; /* cards separate by tone, not shadow (§4.3) */
+  --primary-soft:   #17342A; /* neon mint at whisper strength */
+  --secondary-soft: #221F38;
+  --gold-soft:      #2A2416;
 
   /* Shape */
   --radius:       14px;

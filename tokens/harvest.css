@@ -24,6 +24,9 @@
   --edge-primary:   transparent;
   --edge-secondary: transparent;
   --shadow-card:    none; /* the ceremony is light on darkness, not shadows */
+  --primary-soft:   #241D0F; /* gold at ember strength */
+  --secondary-soft: #10241B;
+  --gold-soft:      #241D0F;
 
   /* Shape */
   --radius:       8px;

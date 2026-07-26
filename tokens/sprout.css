@@ -23,6 +23,9 @@
   --edge-primary:   #D19C2C; /* darker shade of --primary for the toy-block bottom shadow */
   --edge-secondary: #5D93B5; /* darker shade of --secondary */
   --shadow-card:    none;    /* Sprout depth comes from chunky borders */
+  --primary-soft:   #FBEBC4; /* honey milk */
+  --secondary-soft: #DDF0FA; /* sky milk */
+  --gold-soft:      #FAE9C0;
 
   /* Shape: chunky borders + solid bottom shadow = toy-block, pressable */
   --radius:       28px;

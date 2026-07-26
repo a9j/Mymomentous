@@ -7,7 +7,6 @@ import {
   type ReactNode,
 } from "react";
 import type { Era } from "./motion";
-import { loadEraFonts } from "./fonts";
 
 export const ERAS: Era[] = ["sprout", "sapling", "grove", "canopy", "harvest"];
 
@@ -30,10 +29,11 @@ const EraContext = createContext<EraContextValue>({
 });
 
 /* Applied before React state updates so children reading computed styles
- * in their effects always see the new era's tokens. */
+ * in their effects always see the new era's tokens. Fonts are bundled
+ * (see main.tsx) — the browser lazily fetches a family's woff2 the
+ * first time an era's tokens reference it. */
 function applyEra(era: Era) {
   document.documentElement.dataset.era = era;
-  loadEraFonts(era);
 }
 
 export function EraProvider({

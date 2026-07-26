@@ -65,7 +65,7 @@ export function KidHome() {
         </div>
       </div>
 
-      <Card>
+      <Card className="mm-home-goal-card">
         <h2>Your goal</h2>
         <div className="mm-home-goal">
           <GrowthRing progress={0.65} size={104}>

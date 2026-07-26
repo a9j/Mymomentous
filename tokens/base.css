@@ -12,6 +12,7 @@
  *   Color:  --bg --surface --raised --ink --muted --line
  *           --primary --primary-ink --secondary --secondary-ink
  *           --signal-up --signal-dn --gold --gold-text --credit
+ *           --primary-soft --secondary-soft --gold-soft (pastel block fills)
  *           --edge-primary --edge-secondary (Sprout toy-block shadow shades)
  *   Shape:  --radius --border-w --ring-weight --icon-stroke --touch-min
  *           --press-depth (Sprout pressable-button depth; 0 elsewhere)
