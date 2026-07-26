@@ -192,6 +192,19 @@
   }
   footer { margin-top: 64px; color: var(--muted); font-size: 13.5px; text-align: center; }
   a { color: var(--brand); }
+
+  @media print {
+    :root {
+      --bg: #F5F0E1; --card: #FCFAF3; --ink: #2E4636; --muted: #5F7060;
+      --line: #E9E0CB; --brand: #1E5B3F; --mint: #46C48A; --gold: #8A6A1B;
+      --berry: #C25763; --berry-soft: #F7E4E4; --violet: #6A58D8;
+      --chip-ink: #FCFAF3; --shadow: none;
+    }
+    .wrap { padding: 0 0 40px; max-width: none; }
+    .screen, .rule-card { break-inside: avoid; }
+    h2 { break-after: avoid; }
+    nav.toc { display: none; }
+  }
 </style>
 
 <div class="wrap">
