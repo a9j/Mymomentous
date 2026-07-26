@@ -1,0 +1,65 @@
+.mm-onb {
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 28px 16px 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.mm-onb h1 { font-size: 26px; }
+.mm-onb-progress { display: flex; gap: 6px; }
+.mm-onb-progress span {
+  height: 6px;
+  flex: 1;
+  border-radius: 3px;
+  background: var(--line);
+}
+.mm-onb-progress span.done { background: var(--primary); }
+
+.mm-onb label {
+  display: block;
+  font-weight: var(--weight-body-strong);
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+.mm-onb input, .mm-onb select {
+  width: 100%;
+  min-height: var(--touch-min);
+  padding: 8px 14px;
+  border: var(--border-w) solid var(--line);
+  border-radius: calc(var(--radius) * 0.7);
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+}
+.mm-onb input:focus, .mm-onb select:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 1px;
+}
+.mm-onb-row { display: flex; gap: 12px; }
+.mm-onb-row > div { flex: 1; }
+.mm-onb-field { margin-bottom: 4px; }
+
+.mm-onb-kid {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.mm-onb-kid small { color: var(--muted); display: block; }
+
+.mm-onb-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 4px;
+  border-bottom: 1px solid var(--line);
+}
+.mm-onb-item:last-child { border-bottom: none; }
+.mm-onb-item .grow { flex: 1; }
+.mm-onb-item input[type="checkbox"] {
+  width: 22px; height: 22px; min-height: 0;
+  accent-color: var(--primary);
+}
+.mm-onb-actions { display: flex; gap: 12px; justify-content: space-between; margin-top: 8px; }
+.mm-onb .mm-btn-primary { flex: 1; }

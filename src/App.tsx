@@ -1,12 +1,17 @@
 import { useEffect, useState } from "react";
-import { EraProvider } from "./era";
+import { EraProvider, ERAS } from "./era";
 import type { Era } from "./motion";
-import { ERAS } from "./era";
 import { DevGallery } from "./dev/DevGallery";
 import { KidHome } from "./screens/KidHome";
+import { Onboarding } from "./screens/Onboarding";
+import { ParentHome } from "./screens/ParentHome";
 
-/* The hidden dev gallery lives at #dev. ?era=<name> sets the starting
- * era (handy for screenshots and design review). */
+/* Hash routes until real navigation lands:
+ *   (default)    kid home concept
+ *   #onboarding  parent onboarding flow
+ *   #parent      parent home
+ *   #dev         hidden component gallery
+ * ?era=<name> sets the starting era (design review, screenshots). */
 function useHash() {
   const [hash, setHash] = useState(window.location.hash);
   useEffect(() => {
@@ -26,7 +31,15 @@ export default function App() {
   const hash = useHash();
   return (
     <EraProvider initial={initialEra()}>
-      {hash === "#dev" ? <DevGallery /> : <KidHome />}
+      {hash === "#dev" ? (
+        <DevGallery />
+      ) : hash === "#onboarding" ? (
+        <Onboarding onDone={() => { window.location.hash = "#parent"; }} />
+      ) : hash === "#parent" ? (
+        <ParentHome />
+      ) : (
+        <KidHome />
+      )}
     </EraProvider>
   );
 }
